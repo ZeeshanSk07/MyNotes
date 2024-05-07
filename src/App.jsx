@@ -11,12 +11,13 @@ function App() {
   const [groupName,setGroupName] = useState('');
   const [pop,setPop] = useState(false);
   const [inputval,setInputval] = useState('');
-  const [selected,setSelected] = useState(false);
+  const [selected,setSelected] = useState('');
   const [color,setColor] = useState('');
 
  
-  console.log(group);
 
+  let notehead = [];
+  notehead = JSON.parse(localStorage.getItem('group'));
   
   
   return (
@@ -24,7 +25,7 @@ function App() {
       <div className="container">
         <div className="left">
           <h1 style={{margin:'0px'}}>Pocket Notes</h1>
-          <Sidebar/>
+          <Sidebar selected={selected} setSelected={setSelected}/>
           <div onClick={e=>setPop(true)} className='addgrp'>
           +
           </div>
@@ -34,24 +35,23 @@ function App() {
 
           {selected ? (
           <div className="notes">
-            {
-              group.map((grp,i) => {
-                return (
-                  <div key={i} className="note" style={{backgroundColor:grp.bgcolor}}>
-                    <h2>{grp.name}</h2>
-                    {
-                      grp.notes.map((note,i) => {
+                  <div className="note">
+                    <h2 style={{backgroundColor:selected.bgcolor}}>{selected.name}</h2>
+                    <div className='note-content'>{
+                      selected.notes.map((note,i) => {
                         return (
-                          <div key={i} className="note-content">
+                          <div key={i} className="localnote">
                             <p>{note}</p>
                           </div>
                         )
                       })
-                    }
+                    }</div>
+                    <div className='noteinput' style={{backgroundColor:selected.bgcolor}}>
+                      <textarea type="text" placeholder='Enter your text here...........' />
+                    </div>
+                    
                   </div>
-                )
-              })
-            }
+            
           </div>
           ): (
             <div className="defaultpage">

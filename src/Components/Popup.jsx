@@ -30,7 +30,7 @@ const Popup = ({ pop, setPop, inputval, setInputval, color, setColor, group, set
       notes: []
     };
     setGroup([...group, newgroup]);
-    localStorage.setItem('group',JSON.stringify(newgroup));
+    localStorage.setItem('group',JSON.stringify(group));
     
     setPop(false);
     setInputval(''); // Reset input value
