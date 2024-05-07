@@ -1,3 +1,5 @@
+
+
 .Popup {
     display: flex;
     flex-direction: column;
@@ -7,6 +9,8 @@
     border-radius: 7px;
     padding-left: 30px;
     translate: 100% 100%;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .create-group-btn {
@@ -44,7 +48,7 @@
     padding: 3px 20px;
 }
 
-.color-option {
+.color-option, span {
     border: none;
     border-radius: 50%;
     height: 30px;
