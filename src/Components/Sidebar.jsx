@@ -6,7 +6,7 @@ function Sidebar({selected,setSelected}) {
 
     const openmodal = (grp) => {
         setSelected(grp);
-        console.log(selected);
+
     }
   return (
     <>

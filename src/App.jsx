@@ -16,10 +16,6 @@ function App() {
 
  
 
-  let notehead = [];
-  notehead = JSON.parse(localStorage.getItem('group'));
-  
-  
   return (
     <>
       <div className="container">

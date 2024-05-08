@@ -30,12 +30,13 @@ const Popup = ({ pop, setPop, inputval, setInputval, color, setColor, group, set
       notes: []
     };
     setGroup([...group, newgroup]);
-    localStorage.setItem('group',JSON.stringify(group));
+    localStorage.setItem('group',JSON.stringify([...group, newgroup]));
     
     setPop(false);
-    setInputval(''); // Reset input value
+    setInputval('');// Reset input value
     setActive(false);
     setGroupName('');
+    
   };
 
   return (
@@ -44,7 +45,7 @@ const Popup = ({ pop, setPop, inputval, setInputval, color, setColor, group, set
 
       <div className='colorgrp'>
         <h2>Group Name</h2>
-        <input type="text" placeholder='Enter group name' value={groupName} onChange={(e) => { setGroupName(e.target.value); setInputval(e.target.value) }} />
+        <input type="text" placeholder='Enter group name' value={inputval} onChange={(e) => { setGroupName(e.target.value); setInputval(e.target.value) }} />
       </div>
 
       <div>
