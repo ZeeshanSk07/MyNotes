@@ -23,12 +23,28 @@ const Popup = ({ pop, setPop, inputval, setInputval, color, setColor, group, set
     };
   }, [pop, setPop]);
 
+
+  function capitalizeFirstLetter(sidename) {
+    return sidename.charAt(0).toUpperCase() + sidename.slice(1).toLowerCase();
+}
+
   const addgroup = () => {
-  const newgroup = {
-    name: groupName,
-    bgcolor: color,
-    notes: []
-  };
+  
+
+    
+
+    const display = groupName
+                    .split(' ') // Split the string by space
+                    .slice(0, 2) // Take the first two elements
+                    .map(word => word.charAt(0).toUpperCase()) // Extract the first letter of each word and convert to uppercase
+                    .join(''); 
+    let finalname = capitalizeFirstLetter(groupName);
+    const newgroup = {
+      name: finalname,
+      bgcolor: color,
+      display: display,
+      notes: []
+    };
   
   setGroup(prevGroup => {
     const updatedGroup = [...prevGroup, newgroup];
@@ -47,7 +63,7 @@ const Popup = ({ pop, setPop, inputval, setInputval, color, setColor, group, set
 
       <div className='colorgrp'>
         <h2>Group Name</h2>
-        <input type="text" placeholder='Enter group name' value={inputval} onChange={(e) => { setGroupName(e.target.value); setInputval(e.target.value) }} />
+        <input type="text" placeholder='Enter group name' value={inputval} onChange={(e) => { setGroupName(e.target.value); setInputval(e.target.value) }}/>
       </div>
 
       <div>
