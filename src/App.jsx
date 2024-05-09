@@ -3,8 +3,9 @@ import './App.css'
 import Popup from './Components/Popup';
 import defaultpage from './Images/defaultpage.png'
 import lock from './Images/encryp.png'
-import send from './Images/Sendmsg.png'
+import msgsend from './Images/Sendmsg.png';
 import Sidebar from './Components/Sidebar';
+
 
 function App() {
   const [group, setGroup] = useState(JSON.parse(localStorage.getItem('group')));
@@ -15,13 +16,19 @@ function App() {
   const [color, setColor] = useState('');
   const [msg, setMsg] = useState('');
   const [note, setNote] = useState(JSON.parse(localStorage.getItem('Notes')));
+  const [send , setSend] = useState(false);
+  const moment = require('moment');
+  
 
   const sendnote = () => {
+    const formattedDate = moment().format('D MMM YYYY');
+    const formattedTime = moment().format('H:mm a');
   if (msg.trim() !== '') {
     const newNote = {
+      date : formattedDate,
+      time : formattedTime,
       content: msg
     };
-
     // Update 'Notes' in localStorage
     const updatedNotes = [...note, newNote];
     setNote(updatedNotes);
@@ -54,7 +61,7 @@ function App() {
       <div className="container">
         <div className="left">
           <h1 style={{margin:'0px'}}>Pocket Notes</h1>
-          <Sidebar selected={selected} setSelected={setSelected}/>
+          <Sidebar group={group} selected={selected} setSelected={setSelected}/>
           <div onClick={e => setPop(true)} className='addgrp'>+</div>
         </div>
 
@@ -62,19 +69,32 @@ function App() {
           {selected ? (
             <div className="notes">
               <div className="note">
-                <h2 style={{backgroundColor:selected.bgcolor}}>{selected.name}</h2>
+                <h2 style={{backgroundColor:'#001F8B'}}><button className='grpbtn' style={{ backgroundColor: selected.bgcolor }}></button>{selected.name}</h2>
                 <div className='note-content'>
-                  {(group[selected]?.notes || []).map((note, i) => {
-                    return (
-                      <div key={i} className="localnote">
-                        <p className='notec'>{note.content}</p>
-                      </div>
-                    )
+                  {group.map(grp=>{
+                    if(grp.name === selected.name){
+                      return grp.notes.map((note, i) => {
+                        return (
+                          <div key={i} className="localnote">
+                            <p className='notec'>{note.content}</p>
+                            <div className='timestamp'>
+                                <p>{note.date}</p>
+                                <p style={{backgroundColor:'black',width:'8px',height:'8px', borderRadius:'50%'}}></p>
+                                <p>{note.time}</p>
+                            </div>
+                          </div>
+                        )
+                      })
+                    }else{
+                      return null;
+                    }
                   })}
+                    
+                  
                 </div>
-                <div className='noteinput' style={{backgroundColor:selected.bgcolor}}>
-                  <textarea type="text" value={msg} placeholder='Enter your text here...........' onChange={(e) => setMsg(e.target.value)}/>
-                  <button className='sendmsg' onClick={sendnote}><img src={send} alt="send"/></button>
+                <div className='noteinput' style={{backgroundColor:'#001F8B'}}>
+                  <textarea type="text" value={msg} placeholder='Enter your text here...........' onChange={(e) => {setMsg(e.target.value);setSend(e.target.value.trim().length > 0)}}/>
+                  <button className='sendmsg' onClick={sendnote}><img src={msgsend} style={{opacity: send ? 1 : 0.4, cursor:send? 'pointer': 'not-allowed'}} alt="send"/></button>
                 </div>
               </div>
             </div>

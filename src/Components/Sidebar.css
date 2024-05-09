@@ -1,6 +1,8 @@
 .sidebar {
     display: flex;
     height: 85.5vh;
+    overflow: auto;
+    scrollbar-width: none;
     width: 26vw;
     margin: 0;
     padding: 0;
@@ -12,11 +14,13 @@
 .grpname {
     display: flex;
     font-size: 1.3em;
-    width: 26vw;
+    width: 22.6vw;
     height: auto;
-    margin-top: 1.5em;
     padding-left: 6em;
+    padding: 1rem 0 1rem 2.5em;
     align-items: center;
+    border: none;
+    border-radius: 20px;
 }
 
 .grpbtn {
