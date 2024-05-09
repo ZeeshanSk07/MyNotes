@@ -3,18 +3,51 @@ import './App.css'
 import Popup from './Components/Popup';
 import defaultpage from './Images/defaultpage.png'
 import lock from './Images/encryp.png'
+import send from './Images/Sendmsg.png'
 import Sidebar from './Components/Sidebar';
 
 function App() {
+  const [group, setGroup] = useState(JSON.parse(localStorage.getItem('group')));
+  const [groupName, setGroupName] = useState('');
+  const [pop, setPop] = useState(false);
+  const [inputval, setInputval] = useState('');
+  const [selected, setSelected] = useState('');
+  const [color, setColor] = useState('');
+  const [msg, setMsg] = useState('');
+  const [note, setNote] = useState(JSON.parse(localStorage.getItem('Notes')));
 
-  const [group,setGroup] = useState([]);
-  const [groupName,setGroupName] = useState('');
-  const [pop,setPop] = useState(false);
-  const [inputval,setInputval] = useState('');
-  const [selected,setSelected] = useState('');
-  const [color,setColor] = useState('');
+  const sendnote = () => {
+  if (msg.trim() !== '') {
+    const newNote = {
+      content: msg
+    };
 
- 
+    // Update 'Notes' in localStorage
+    const updatedNotes = [...note, newNote];
+    setNote(updatedNotes);
+    localStorage.setItem("Notes", JSON.stringify(updatedNotes));
+
+    // Find the selected group and update its notes
+    const updatedGroup = group.map(grp => {
+      if (grp.name === selected.name) {
+        return {
+          ...grp,
+          notes: [...(grp.notes || []), newNote]
+        };
+      }
+      return grp;
+    });
+
+    // Update 'group' in localStorage
+    setGroup(updatedGroup);
+    localStorage.setItem("group", JSON.stringify(updatedGroup));
+  }
+
+  setMsg('');
+};
+
+
+
 
   return (
     <>
@@ -22,59 +55,48 @@ function App() {
         <div className="left">
           <h1 style={{margin:'0px'}}>Pocket Notes</h1>
           <Sidebar selected={selected} setSelected={setSelected}/>
-          <div onClick={e=>setPop(true)} className='addgrp'>
-          +
-          </div>
+          <div onClick={e => setPop(true)} className='addgrp'>+</div>
         </div>
 
         <div className="right">
-
           {selected ? (
-          <div className="notes">
-                  <div className="note">
-                    <h2 style={{backgroundColor:selected.bgcolor}}>{selected.name}</h2>
-                    <div className='note-content'>{
-                      selected.notes.map((note,i) => {
-                        return (
-                          <div key={i} className="localnote">
-                            <p>{note}</p>
-                          </div>
-                        )
-                      })
-                    }</div>
-                    <div className='noteinput' style={{backgroundColor:selected.bgcolor}}>
-                      <textarea type="text" placeholder='Enter your text here...........' />
-                    </div>
-                    
-                  </div>
-            
-          </div>
-          ): (
-            <div className="defaultpage">
-                <img className='img' src={defaultpage} alt="" />
-                <h1>Pocket Notes</h1>
-                <p className='para'>Send and receive messages without keeping your phone online.
-                  Use Pocket Notes on up to 4 linked devices and 1 mobile phone
-                </p>
-
-                <div className='endtoend'>
-                  <img src={lock} alt="" />
-                  end-to-end encrypted
+            <div className="notes">
+              <div className="note">
+                <h2 style={{backgroundColor:selected.bgcolor}}>{selected.name}</h2>
+                <div className='note-content'>
+                  {(group[selected]?.notes || []).map((note, i) => {
+                    return (
+                      <div key={i} className="localnote">
+                        <p className='notec'>{note.content}</p>
+                      </div>
+                    )
+                  })}
                 </div>
-                
+                <div className='noteinput' style={{backgroundColor:selected.bgcolor}}>
+                  <textarea type="text" value={msg} placeholder='Enter your text here...........' onChange={(e) => setMsg(e.target.value)}/>
+                  <button className='sendmsg' onClick={sendnote}><img src={send} alt="send"/></button>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="defaultpage">
+              <img className='img' src={defaultpage} alt="" />
+              <h1>Pocket Notes</h1>
+              <p className='para'>Send and receive messages without keeping your phone online.
+                Use Pocket Notes on up to 4 linked devices and 1 mobile phone
+              </p>
+              <div className='endtoend'>
+                <img src={lock} alt="" />
+                end-to-end encrypted
+              </div>
             </div>
           )}
         </div>
-
         <div className="center-pop" style={{visibility:pop ? 'visible' : 'hidden'}}>
           <Popup pop={pop} setPop={setPop} group={group} setGroup={setGroup} inputval={inputval} setInputval={setInputval} color={color} setColor={setColor} groupName={groupName} setGroupName={setGroupName}/>
         </div>
-
-        
-        
       </div>
     </>
-
   )
 }
 

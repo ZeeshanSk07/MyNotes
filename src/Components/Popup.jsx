@@ -24,21 +24,23 @@ const Popup = ({ pop, setPop, inputval, setInputval, color, setColor, group, set
   }, [pop, setPop]);
 
   const addgroup = () => {
-    const newgroup = {
-      name: groupName,
-      bgcolor: color,
-      notes: []
-    };
-    setGroup([...group, newgroup]);
-    localStorage.setItem('group',JSON.stringify([...group, newgroup]));
-    
-    setPop(false);
-    setInputval('');// Reset input value
-    setActive(false);
-    setGroupName('');
-    
+  const newgroup = {
+    name: groupName,
+    bgcolor: color,
+    notes: []
   };
+  
+  setGroup(prevGroup => {
+    const updatedGroup = [...prevGroup, newgroup];
+    localStorage.setItem('group', JSON.stringify(updatedGroup));
+    return updatedGroup;
+  });
 
+  setPop(false);
+  setInputval('');
+  setActive(false);
+  setGroupName('');
+};
   return (
     <div className="Popup">
       <h2 style={{ marginTop: '20px' }}>Create New group</h2>
