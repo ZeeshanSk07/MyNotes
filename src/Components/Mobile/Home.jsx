@@ -99,7 +99,7 @@ function Home() {
         </h1>
         {group.map((grp, index) => {
           return (
-            <Link key={index} style={{ textDecoration: "none" }} to="./notes">
+            <Link key={index} style={{ textDecoration: "none", color:'black'}} to="./notes">
               <div
                 className="list"
                 key={index}
