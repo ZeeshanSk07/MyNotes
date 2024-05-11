@@ -1,89 +1,87 @@
 .home {
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-content: center;
-    padding: 1vh 0;
-    width: 100vw;
-    min-height: 100vh;
-    cursor: default;
-    
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  padding: 1vh 0;
+  width: 100vw;
+  min-height: 100vh;
+  cursor: default;
 }
 
 .home h1 {
-    text-align: start;
-    margin-left: 10%;
-    padding: 4vh 0;
-    font-size: 2.5rem;
+  text-align: start;
+  margin-left: 10%;
+  padding: 4vh 0;
+  font-size: 2.5rem;
 }
 
 .list {
-    padding: 2vh 6vw;
-    font-size: 1.8em;
-    border-radius: 15px;
-    height: auto;
-    margin-left: 10vw;
-    width:98vw;
-    overflow-y: auto;
-    scrollbar-width: none;
+  padding: 2vh 6vw;
+  font-size: 1.8em;
+  border-radius: 15px;
+  height: auto;
+  margin-left: 10vw;
+  width: 98vw;
+  overflow-y: auto;
+  scrollbar-width: none;
 }
 
-
 .listicon {
-    border-radius: 50%;
-    width: 8.5vh;
-    height: 8.5vh;
-    font-size: 0.8em;
-    margin-right: 15px;
+  border-radius: 50%;
+  width: 8.5vh;
+  height: 8.5vh;
+  font-size: 0.8em;
+  margin-right: 15px;
 }
 
 .grpadd {
-    display: flex;
-    float: right;
-    position: sticky;
-    color: white;
-    font-size: 3.5rem;
-    font-weight:bold;
-    align-items: center;
-    justify-content: center;
-    background-color: #16008B;
-    border-radius: 50%;
-    width: 70px;
-    height: 70px;
-    z-index: 10;
-    cursor: default;
+  display: flex;
+  float: right;
+  position: sticky;
+  color: white;
+  font-size: 3.5rem;
+  font-weight: bold;
+  align-items: center;
+  justify-content: center;
+  background-color: #16008b;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  z-index: 10;
+  cursor: default;
 }
 
 .Popupmb {
-    background-color: white;
-    z-index: 100;
-    position: absolute;
-    padding: 1vh 1vw 1vh 3vw;
-    margin: auto;
-    top: 32%;
-    left: 10%;
-    width: 80vw;
-    height: fit-content;
-    border: 2px solid black;
+  background-color: white;
+  z-index: 100;
+  position: absolute;
+  padding: 1vh 1vw 1vh 3vw;
+  margin: auto;
+  top: 32%;
+  left: 10%;
+  width: 80vw;
+  height: fit-content;
+  border: 2px solid black;
 }
 
 .Popupmb h2 {
-    font-size: 1em;
-    margin: 1vh 0 1vh 0;
-    display: inline-block;
+  font-size: 1em;
+  margin: 1vh 0 1vh 0;
+  display: inline-block;
 }
 
 .Popupmb input {
-    width: fit-content;
-    padding: 0.7vh 1vw;
-    border-radius: 10px;
-    border: 1px solid gray;
+  width: fit-content;
+  padding: 0.7vh 1vw;
+  border-radius: 10px;
+  border: 1px solid gray;
 }
 
 .color-option-mb {
-    border-radius: 50%;
-    height: 2.2em;
-    width: 2.2em;
-    margin-left: 0.1vw;
+  border-radius: 50%;
+  height: 2.2em;
+  width: 2.2em;
+  margin-left: 0.1vw;
 }
