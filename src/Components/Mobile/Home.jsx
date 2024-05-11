@@ -185,7 +185,7 @@ function Home() {
                         backgroundColor: clr,
                         border:
                           active === index
-                            ? "1.px solid black"
+                            ? "1.5px solid black"
                             : "1px solid white",
                       }}
                     ></button>
