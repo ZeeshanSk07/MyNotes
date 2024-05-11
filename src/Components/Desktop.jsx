@@ -8,7 +8,6 @@ import Sidebar from './Sidebar.jsx';
 import moment from 'moment';
 
 function Desktop() {
-
   const storedGroup = localStorage.getItem('group');
   const initialGroup = storedGroup ? JSON.parse(storedGroup) : [];
   const [group, setGroup] = useState(initialGroup);
