@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import "./Desktop.css";
 import Popup from "./Popup.jsx";
-import defaultpage from "../Images/defaultpage.png";
-import lock from "../Images/encryp.png";
-import msgsend from "../Images/Sendmsg.png";
+import defaultpage from "../../Images/defaultpage.png";
+import lock from "../../Images/encryp.png";
+import msgsend from "../../Images/Sendmsg.png";
 import Sidebar from "./Sidebar.jsx";
 import moment from "moment";
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Desktop from "./Components/Desktop";
+import Desktop from "./Components/Desktop/Desktop";
 import Home from "./Components/Mobile/Home";
 import Notes from "./Components/Mobile/Notes";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
