@@ -51,7 +51,7 @@ function Desktop() {
       setGroup(updatedGroup);
       localStorage.setItem("group", JSON.stringify(updatedGroup));
     }
-
+    setSend(false);
     setMsg("");
   };
 
